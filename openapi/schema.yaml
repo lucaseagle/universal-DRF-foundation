@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: drf-api-template
+  version: 0.0.1
+  description: Base API for Django REST Framework applications.
+paths:
+  /api/health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+              examples:
+                HealthResponse:
+                  value:
+                    status: ok
+                    service: drf-api-template
+                    version: 0.0.1
+                    commit: '2690102'
+                    time: 2024-04-06T12:30:00+0000
+                    checks:
+                      app: ok
+                      db: ok
+                  summary: Health response
+          description: ''
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+        service:
+          type: string
+        version:
+          type: string
+        commit:
+          type: string
+        time:
+          type: string
+          readOnly: true
+        checks:
+          $ref: '#/components/schemas/HealthChecks'
+      required:
+      - checks
+      - commit
+      - service
+      - status
+      - time
+      - version
+    HealthChecks:
+      type: object
+      properties:
+        app:
+          type: string
+        db:
+          type: string
+      required:
+      - app
+      - db

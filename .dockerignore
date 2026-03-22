@@ -1,0 +1,12 @@
+Dockerfile
+.dockerignore
+.venv
+.pytest_cache
+.mypy_cache
+.git
+.gitignore
+.pre-commit-config.yaml
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
